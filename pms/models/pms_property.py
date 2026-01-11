@@ -77,7 +77,7 @@ class PmsProperty(models.Model):
         required=True,
         index=True,
         domain="[('is_pms_available', '=', True)]",
-        default=lambda self: self.env.ref("product.list0").id,
+        default=lambda self: self._get_default_pricelist(),
     )
     default_arrival_hour = fields.Char(
         string="Arrival Hour", help="HH:mm Format", default="14:00"
@@ -234,6 +234,20 @@ class PmsProperty(models.Model):
             You can use variables like {{ object.checkin }}, etc.
         """,
     )
+
+    @api.model
+    def _get_default_pricelist(self):
+        """Get default pricelist for new properties.
+
+        First tries to find a PMS-available pricelist, then falls back
+        to any pricelist. Returns False if none found.
+        """
+        pricelist = self.env["product.pricelist"].search(
+            [("is_pms_available", "=", True)], limit=1
+        )
+        if not pricelist:
+            pricelist = self.env["product.pricelist"].search([], limit=1)
+        return pricelist.id if pricelist else False
 
     @api.depends_context(
         "checkin",
