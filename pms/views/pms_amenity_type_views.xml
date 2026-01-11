@@ -27,16 +27,16 @@
         <field name="name">pms.room_amenity_type_list</field>
         <field name="model">pms.amenity.type</field>
         <field name="arch" type="xml">
-            <tree name="Room Amenities Type">
+            <list name="Room Amenities Type">
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Action for pms room amenities type -->
     <record model="ir.actions.act_window" id="action_pms_room_amenity_type_view_form">
         <field name="name">Room amenity Type</field>
         <field name="res_model">pms.amenity.type</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem

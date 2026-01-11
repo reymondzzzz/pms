@@ -8,8 +8,6 @@
             <field name="interval_number">1</field>
             <field name="user_id" ref="base.user_root" />
             <field name="interval_type">hours</field>
-            <field name="numbercall">-1</field>
-            <field name="doall" eval="False" />
             <field name="state">code</field>
             <field name="model_id" ref="model_traveller_report_wizard" />
             <field
@@ -29,8 +27,6 @@
             <field name="interval_number">30</field>
             <field name="user_id" ref="base.user_root" />
             <field name="interval_type">minutes</field>
-            <field name="numbercall">-1</field>
-            <field name="doall" eval="False" />
             <field name="state">code</field>
             <field name="model_id" ref="model_traveller_report_wizard" />
             <field
@@ -48,8 +44,6 @@
             <field name="interval_number">30</field>
             <field name="user_id" ref="base.user_root" />
             <field name="interval_type">minutes</field>
-            <field name="numbercall">-1</field>
-            <field name="doall" eval="False" />
             <field name="state">code</field>
             <field name="model_id" ref="model_traveller_report_wizard" />
             <field
@@ -67,8 +61,6 @@
             <field name="interval_number">30</field>
             <field name="user_id" ref="base.user_root" />
             <field name="interval_type">minutes</field>
-            <field name="numbercall">-1</field>
-            <field name="doall" eval="False" />
             <field name="state">code</field>
             <field name="model_id" ref="model_traveller_report_wizard" />
             <field

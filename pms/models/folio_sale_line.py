@@ -199,14 +199,22 @@ class FolioSaleLine(models.Model):
         help="",
         comodel_name="uom.uom",
         index=True,
-        domain="[('category_id', '=', product_uom_category_id)]",
+        # Domain removed - category_id doesn't exist in Odoo 19's uom.uom
     )
+    # In Odoo 19, uom.uom no longer has category_id field (UoM hierarchy changed)
+    # This field is kept for compatibility but returns False
     product_uom_category_id = fields.Many2one(
         string="Unit of Measure Category",
-        help="",
+        help="Deprecated in Odoo 19 - UoM categories were removed",
+        comodel_name="uom.uom",
         readonly=True,
-        related="product_id.uom_id.category_id",
+        compute="_compute_product_uom_category_id",
     )
+
+    @api.depends("product_id")
+    def _compute_product_uom_category_id(self):
+        for record in self:
+            record.product_uom_category_id = False
     product_uom_readonly = fields.Boolean(
         string="", help="", compute="_compute_product_uom_readonly"
     )
@@ -1114,17 +1122,7 @@ class FolioSaleLine(models.Model):
         product_currency = product.currency_id
         if rule_id:
             pricelist_item = PricelistItem.browse(rule_id)
-            if pricelist_item.pricelist_id.discount_policy == "without_discount":
-                while (
-                    pricelist_item.base == "pricelist"
-                    and pricelist_item.base_pricelist_id
-                    and pricelist_item.base_pricelist_id.discount_policy
-                    == "without_discount"
-                ):
-                    price, rule_id = pricelist_item.base_pricelist_id.with_context(
-                        uom=uom.id
-                    ).get_product_price_rule(product, qty, self.folio_id.partner_id)
-                    pricelist_item = PricelistItem.browse(rule_id)
+            # Odoo 19: discount_policy removed from pricelist, skip "without_discount" logic
 
             if pricelist_item.base == "standard_price":
                 field_name = "standard_price"

@@ -23,7 +23,7 @@
                             Allow pay on reservations
                         </div>
                         <div
-                            attrs="{'invisible': [('pos_pay_on_reservation', '=', False)]}"
+                            invisible="not pos_pay_on_reservation"
                         >
                             <div class="content-group mt16">
                                 <field name="pos_pay_on_reservation_method_id" />
@@ -46,7 +46,7 @@
             <xpath expr="//div[@id='pos_payment_section']" position="inside">
                 <div
                     class="col-12 col-lg-6 o_setting_box"
-                    attrs="{'invisible': [('pos_cash_control', '=', False)]}"
+                    invisible="not pos_cash_control"
                 >
                     <div class="o_setting_left_pane">
                         <field name="pos_cash_in_out_allowed" />
@@ -60,7 +60,7 @@
                 </div>
                 <div
                     class="col-12 col-lg-6 o_setting_box"
-                    attrs="{'invisible': [('pos_cash_control', '=', False)]}"
+                    invisible="not pos_cash_control"
                 >
                     <div class="o_setting_left_pane">
                         <field name="pos_cash_move_partner" />

@@ -44,7 +44,7 @@
         <field name="name">pms.ses.communication.tree</field>
         <field name="model">pms.ses.communication</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 name="Property Ubications"
                 create="false"
                 decoration-danger="state in ('error_sending', 'error_processing')"
@@ -66,7 +66,7 @@
                 <field name="state" />
                 <field name="sending_result" />
                 <field name="processing_result" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -123,7 +123,7 @@
                     domain="[('create_date', '&gt;=', (context_today() + ' 00:00:00'))]"
                 />
                 <!-- groups -->
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="group_by_pms_property_id"
                         string="Property"
@@ -157,7 +157,7 @@
     <record model="ir.actions.act_window" id="open_pms_ses_communication_form_tree">
         <field name="name">SES Communications</field>
         <field name="res_model">pms.ses.communication</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         name="SES Communications"

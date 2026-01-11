@@ -50,7 +50,7 @@
                                 nolabel="1"
                                 context="{'default_pms_room_type_id':id}"
                             >
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="by_default" />
                                     <field name="pms_room_type_id" invisible="1" />
                                     <field name="pms_board_service_id" />
@@ -68,7 +68,7 @@
                                         name="pricelist_ids"
                                         widget="many2many_tags"
                                     />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Room Amenities">
@@ -85,7 +85,7 @@
         <field name="name">pms.room_type.tree</field>
         <field name="model">pms.room.type</field>
         <field name="arch" type="xml">
-            <tree name=" Property Room Type">
+            <list name=" Property Room Type">
                 <field name="sequence" widget="handle" />
                 <field name="pms_property_ids" widget="many2many_tags" />
                 <field name="name" />
@@ -93,7 +93,7 @@
                 <field name="list_price" />
                 <field name="room_ids" widget="many2many_tags" />
                 <field name="total_rooms_count" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -119,7 +119,7 @@
     <record model="ir.actions.act_window" id="open_pms_room_type_form_tree">
         <field name="name">Room Type</field>
         <field name="res_model">pms.room.type</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem

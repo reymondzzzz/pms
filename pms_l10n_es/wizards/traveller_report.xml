@@ -13,39 +13,27 @@
                             <field name="pms_property_id" />
                             <field
                                 name="report_type"
-                                attrs="{'invisible': [('is_ses', '=', False)]}"
+                                invisible="not is_ses"
                             />
                             <field
                                 name="date_target"
-                                attrs="{'invisible': [('is_ses', '=', True), ('report_type', '=', 'reservations')]}"
+                                invisible="is_ses and report_type == 'reservations'"
                             />
                             <field
                                 name="date_from"
-                                attrs="{'invisible': [
-                                '|',
-                                '&amp;',
-                                ('is_ses', '=', True),
-                                ('report_type', '=', 'travellers'),
-                                ('is_ses', '=', False),
-                                ]}"
+                                invisible="(is_ses and report_type == 'travellers') or not is_ses"
                             />
                             <field
                                 name="date_to"
-                                attrs="{'invisible': [
-                                '|',
-                                '&amp;',
-                                ('is_ses', '=', True),
-                                ('report_type', '=', 'travellers'),
-                                ('is_ses', '=', False),
-                                ]}"
+                                invisible="(is_ses and report_type == 'travellers') or not is_ses"
                             />
                         </group>
                         <group
-                            attrs="{'invisible': ['|', ('txt_message','=',False), ('is_ses', '=', True)]}"
+                            invisible="not txt_message or is_ses"
                         >
                             <field name="txt_message" readonly="1" />
                         </group>
-                        <group attrs="{'invisible': [('txt_message','=',False)]}">
+                        <group invisible="not txt_message">
                             <field
                                 name="txt_binary"
                                 filename="txt_filename"

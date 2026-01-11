@@ -3,7 +3,7 @@
 {
     "name": "Property in Account Move Budget",
     "summary": "Add Property Field in Account Move Budget",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Custom",
     "website": "https://github.com/OCA/pms",
     "author": "Comunitea, Odoo Community Association (OCA)",

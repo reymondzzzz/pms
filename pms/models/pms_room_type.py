@@ -195,7 +195,8 @@ class PmsRoomType(models.Model):
                 {
                     "purchase_ok": False,
                     "sale_ok": False,
-                    "detailed_type": "service",
+                    # Odoo 19: detailed_type deprecated, use type instead
+                    "type": "service",
                 }
             )
         return super().create(vals_list)

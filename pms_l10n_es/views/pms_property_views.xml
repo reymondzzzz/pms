@@ -28,7 +28,7 @@
                             <field name="institution_property_id" />
                             <field
                                 name="ses_url"
-                                attrs="{'invisible': [('institution','!=','ses')]}"
+                                invisible="institution != 'ses'"
                             />
                         </group>
                     </div>

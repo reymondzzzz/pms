@@ -9,17 +9,17 @@ import time
 import pytz
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models, modules
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.osv import expression
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, file_path
 
 from odoo.addons.base.models.res_partner import _tz_get
 
 
 def get_default_logo():
     with open(
-        modules.get_module_resource("pms", "static/img", "property_logo.png"), "rb"
+        file_path("pms/static/img/property_logo.png"), "rb"
     ) as f:
         return base64.b64encode(f.read())
 
@@ -651,7 +651,13 @@ class PmsProperty(models.Model):
     def create(self, vals_list):
         records = self.env["pms.property"]
         for vals in vals_list:
+            # Handle partner_firstname module: name is computed from firstname/lastname
+            # If name is not directly provided, construct it from firstname/lastname
             name = vals.get("name")
+            if not name:
+                firstname = vals.get("firstname", "")
+                lastname = vals.get("lastname", "")
+                name = " ".join(filter(None, [firstname, lastname])) or "Property"
             if "folio_sequence_id" not in vals or not vals.get("folio_sequence_id"):
                 folio_sequence = self.env["ir.sequence"].create(
                     {
@@ -742,7 +748,8 @@ class PmsProperty(models.Model):
                             ("pms_property_id", "=", pms_property.id),
                             ("room_type_id", "=", room_type.id),
                             ("availability_plan_id", "=", availability_plan.id),
-                            ("date", "=", fields.date.today()),
+                            # Odoo 19: fields.date → fields.Date
+                            ("date", "=", fields.Date.today()),
                         ]
                     )
                     if not rule:
@@ -751,7 +758,8 @@ class PmsProperty(models.Model):
                                 "pms_property_id": pms_property.id,
                                 "room_type_id": room_type.id,
                                 "availability_plan_id": availability_plan.id,
-                                "date": fields.date.today(),
+                                # Odoo 19: fields.date → fields.Date
+                                "date": fields.Date.today(),
                                 "closed": True,
                             }
                         )

@@ -51,9 +51,9 @@ class ProductProduct(models.Model):
             else:
                 rec.room_type_id = False
 
-    def price_compute(
-        self, price_type, uom=False, currency=False, company=None, date=False
+    def _price_compute(
+        self, price_type, uom=None, currency=None, company=None, date=False
     ):
         if self._context.get("board_service_line_id"):
             price_type = "board_price"
-        return super().price_compute(price_type, uom, currency, company, date)
+        return super()._price_compute(price_type, uom, currency, company, date)

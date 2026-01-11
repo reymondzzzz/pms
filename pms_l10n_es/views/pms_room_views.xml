@@ -12,7 +12,7 @@
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Travel record institution"
-                    attrs="{'invisible': [('institution_independent_account', '=', False)]}"
+                    invisible="not institution_independent_account"
                 >
                     <group>
                         <field name="institution" />

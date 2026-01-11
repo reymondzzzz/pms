@@ -860,7 +860,8 @@ class PmsFolio(models.Model):
     )
     def _compute_pricelist_id(self):
         for folio in self:
-            is_new = not folio.pricelist_id or isinstance(folio.id, models.NewId)
+            # Odoo 19: models.NewId removed, use not isinstance(id, int) instead
+            is_new = not folio.pricelist_id or not isinstance(folio.id, int)
             if folio.reservation_type == "out":
                 folio.pricelist_id = False
             elif len(folio.reservation_ids.pricelist_id) == 1:

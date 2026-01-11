@@ -15,7 +15,7 @@
                     </div>
                     <div
                         class="o_setting_right_pane"
-                        attrs="{'invisible': [('pay_on_reservation', '=', False)]}"
+                        invisible="not pay_on_reservation"
                     >
                         <label for="pay_on_reservation" />
                         <div class="text-muted">

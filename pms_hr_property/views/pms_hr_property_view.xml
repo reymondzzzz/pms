@@ -8,12 +8,12 @@
             <xpath expr="//notebook" position="inside">
                 <page name="staff_property">
                     <field name="employee_ids">
-                        <tree>
+                        <list>
                             <field name="job_id" />
                             <field name="name" />
                             <field name="work_email" />
                             <field name="work_phone" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

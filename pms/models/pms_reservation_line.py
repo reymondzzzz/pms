@@ -203,8 +203,8 @@ class PmsReservationLine(models.Model):
 
         pricelist_price = self._get_pricelist_price()
 
-        if self.reservation_id.pricelist_id.discount_policy == "with_discount":
-            return pricelist_price
+        # Odoo 19: discount_policy removed from pricelist, always use direct price
+        return pricelist_price
 
         if not self.pricelist_item_id:
             # No pricelist rule found => no discount from pricelist

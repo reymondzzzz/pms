@@ -913,8 +913,9 @@ class PmsReservation(models.Model):
     @api.depends("partner_id", "agency_id")
     def _compute_pricelist_id(self):
         for reservation in self:
-            is_new = not reservation.pricelist_id or isinstance(
-                reservation.id, models.NewId
+            # Odoo 19: models.NewId removed, use not isinstance(id, int) instead
+            is_new = not reservation.pricelist_id or not isinstance(
+                reservation.id, int
             )
             if reservation.reservation_type == "out":
                 reservation.pricelist_id = False
@@ -1127,7 +1128,8 @@ class PmsReservation(models.Model):
                 if len(record.folio_id.reservation_ids) > 1:
                     record.checkin = record.folio_id.reservation_ids[0].checkin
                 else:
-                    record.checkin = fields.date.today()
+                    # Odoo 19: fields.date → fields.Date (capital D)
+                    record.checkin = fields.Date.today()
             record.check_in_out_dates()
 
     @api.depends("reservation_line_ids", "checkin")

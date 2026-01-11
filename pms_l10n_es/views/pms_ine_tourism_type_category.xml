@@ -18,16 +18,16 @@
         <field name="name">pms.ine.tourism.category.tree</field>
         <field name="model">pms.ine.tourism.type.category</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="type" />
                 <field name="category" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.actions.act_window" id="open_pms_ine_tourism_category">
         <field name="name">INE Categories</field>
         <field name="res_model">pms.ine.tourism.type.category</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <!--    <menuitem-->
     <!--        name="INE Tourism Categories"-->

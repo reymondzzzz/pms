@@ -9,11 +9,11 @@
                 <page
                     string="SES Communications"
                     name="property_general"
-                    attrs="{'invisible': [('is_ses','!=',True),'|',('is_ses','=',True),('ses_communication_ids','!=',False)]}"
+                    invisible="not is_ses or (is_ses and ses_communication_ids)"
                 >
                     <field name="is_ses" invisible="1" />
                     <field name="ses_communication_ids">
-                        <tree>
+                        <list>
                             <field name="reservation_id" />
                             <field name="communication_id" />
                             <field name="operation" />
@@ -25,7 +25,7 @@
                             <field name="state" />
                             <field name="sending_result" />
                             <field name="processing_result" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

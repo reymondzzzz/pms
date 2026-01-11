@@ -9,7 +9,7 @@
                     <field name="amount" />
                     <field name="pms_property_id" />
                     <field name="board_service_line_ids">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field
                                 name="pms_board_service_room_type_id"
                                 invisible="1"
@@ -19,7 +19,7 @@
                             <field name="adults" />
                             <field name="children" />
                             <field name="pms_property_id" invisible="1" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
             </form>
