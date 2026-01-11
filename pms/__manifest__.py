@@ -71,6 +71,7 @@
         "views/pms_service_line_views.xml",
         "views/pms_folio_views.xml",
         "views/pms_room_type_views.xml",
+        "views/pms_room_type_image_views.xml",
         "views/pms_room_views.xml",
         "views/pms_room_closure_reason_views.xml",
         "views/account_payment_views.xml",

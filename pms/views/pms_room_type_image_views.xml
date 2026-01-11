@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2025 NN
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="pms_room_type_image_view_form">
+        <field name="name">pms.room.type.image.form</field>
+        <field name="model">pms.room.type.image</field>
+        <field name="arch" type="xml">
+            <form string="Room Type Image">
+                <sheet>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="room_type_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="pms_room_type_image_view_kanban">
+        <field name="name">pms.room.type.image.kanban</field>
+        <field name="model">pms.room.type.image</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="sequence" widget="handle"/>
+                <field name="image_128"/>
+                <templates>
+                    <t t-name="card">
+                        <field name="image_128" widget="image" options="{'size': [128, 128]}"/>
+                        <div class="oe_kanban_details">
+                            <field name="name"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

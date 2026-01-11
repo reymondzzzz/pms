@@ -63,6 +63,16 @@ class PmsRoomType(models.Model):
         column2="amenity_id",
         check_pms_properties=True,
     )
+    description = fields.Html(
+        string="Description",
+        help="Detailed description of the room type",
+    )
+    image_ids = fields.One2many(
+        string="Images",
+        help="Gallery images for the room type",
+        comodel_name="pms.room.type.image",
+        inverse_name="room_type_id",
+    )
     default_code = fields.Char(
         string="Code",
         help="Identification code for a room type",
